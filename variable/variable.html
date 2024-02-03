@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+        <h2>Change the properties with <span class="h1">JS</span></h2>
+        <div class="option">
+        <label for="blur">Blur:</label>
+        <input type="range" name="blur" value="0" min="0" max="70" data-sizing="px">
+        <label for="space">space:</label>
+        <input type="range" name="space" value="10" min="0" max="25" data-sizing="px">
+        <label for="background">background_colour:</label>
+        <input type="color"name="bgcolor" value="#e21212">
+        </div>
+        <img src="Planet9_Wallpaper_5000x2813.jpg" alt="">
+ 
+    <style>
+        :root{
+            --blur:0px;
+            --space:10px;
+            --bgcolor:#e21212;
+            background-color: #dbc8c8;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+           
+        }
+        .option label{
+            padding: 2px;
+            font-size: large;
+            font-weight: bold;
+            margin-left: 30px;
+        }
+        h2{
+            font-size: 80px;
+        }
+        img{
+           width: 100vw;
+           height: 300px;
+           margin-top: 50px;
+           padding: var(--space);
+           background: var(--bgcolor);
+           filter: blur(var(--blur));
+        }
+        .h1{
+            color: var(--bgcolor);
+        }
+    </style>
+    <script>
+        const inputs=document.querySelectorAll('.option input');
+        function setData(){
+            const suffix=this.dataset.sizing||'';
+            document.documentElement.style.setProperty(`--${this.name}`,this.value+suffix);
+
+        }
+        inputs.forEach((input)=>input.addEventListener('change',setData));
+        inputs.forEach((input)=>input.addEventListener('mousemove',setData));
+    </script>
+    
+</body>
+</html>
